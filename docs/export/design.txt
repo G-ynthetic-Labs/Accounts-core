@@ -1,0 +1,168 @@
+Accounts-core · design note
+
+G-ynthetic Labs · Internal · SIMULATED until the owner's word · 21 Nov 2026
+
+Accounts-core is the user accounts module every G-ynthetic Labs product pins. It covers:
+
+-   user accounts kept on the person's own computer;
+-   the ways to sign in;
+-   sessions;
+-   the telemetry runtime.
+
+Poly (Agent-Advocate-core and its editions) is the first product to use it.
+
+What lives where
+
+The repo map is POL-REPO-001.
+
+  Concern                                                                                                                       Home
+  ----------------------------------------------------------------------------------------------------------------------------- -----------------------------------------------------------------------------------------
+  Accounts, sessions, passwords, magic links, what is kept on the computer, the telemetry runtime (consent, counting, export)   Accounts-core (this repository)
+  Sign in with Google, Apple, GitHub: proving who the person is and handing over a checked identity                             connectors-lib: sign-in-google, sign-in-apple, sign-in-github, built on its sign-in kit
+  The telemetry probe contract and the per-use-case probes                                                                      adapter-lib: telemetry/, plus domains/<product>/ for one product's probes
+  Sealing secrets at rest                                                                                                       The product's vault, such as Poly's @poly/vault. Accounts-core seals nothing itself.
+
+Accounts-core holds no adapters and no connectors. A product wires them together:
+
+1.  A connector proves who the person is.
+2.  Accounts-core keeps the account.
+3.  A probe counts what the person agreed to.
+
+Accounts (@accounts/core)
+
+Storage: the product's vault
+
+-   Every account, session, consent and count is one JSON document.
+-   Each document is sealed by the product's vault through the Vault port: put, get, remove, names.
+-   get returns a SecretValue with use and wipe. This is the same shape as Poly's vault.
+-   vaultProblems(vault) is a conformance check. A product runs it against its own vault.
+-   Item names are lower-case kebab-case, at most 64 characters, so they round-trip through Poly's
+    vault.
+
+Audit log
+
+-   Every change is first written to the product's audit log as asked, then as done or refused with
+    its codes.
+-   If the audit log will not take the asked entry, nothing changes (A402).
+-   The audit log holds:
+    -   the action;
+    -   the account id;
+    -   the stage;
+    -   the codes;
+    -   the time.
+-   It never holds an address, a provider's sub, a token or a password.
+-   The audit log is tamper-evident through the product's hash chain. It is never called
+    tamper-proof.
+
+Identities
+
+-   A sign-in arrives as { provider, sub, email?, email_verified }, using the OpenID Connect claim
+    names.
+-   The provider's sub is never stored as it came. It is kept as a keyed hash (HMAC-SHA256) under a
+    pepper sealed in the vault.
+-   Emails are kept masked, except for an email account's own address.
+-   One account can link several sign-ins.
+-   The last sign-in on an account cannot be unlinked (A204).
+-   A verified magic link reaching an account whose email was unverified marks that sign-in verified
+    and clears the password.
+
+Sessions
+
+-   A session token is 32 random bytes.
+-   The vault keeps only its SHA-256 digest.
+-   create, validate, revoke and revokeAll manage sessions.
+-   How long a session lasts is the owner's sessionMinutes.
+
+Passwords
+
+-   Only a scrypt password hash is kept, in the form scrypt$N$r$p$salt$hash (RFC 7914).
+-   Lockout follows the owner's lockoutThreshold and lockoutMinutes.
+-   Every scrypt number and the minimum length are the owner's.
+
+Who may change things
+
+-   Only a person creates, renames, links, unlinks or removes an account, sets a password, or signs
+    out (D-145, D-208).
+-   An assistant is refused (A110).
+
+Email ways in (@accounts/email)
+
+-   Email and password. Two functions handle it:
+    -   createUserWithEmailAndPassword makes the account. The email is not verified this way, and
+        the account says so.
+    -   signInWithEmailAndPassword signs in to it.
+-   Magic links, which are optional and off until the owner turns them on:
+    -   The token is 32 bytes. Only its digest is kept.
+    -   A link works once and is removed before anything is returned.
+    -   The token travels in the link's fragment.
+    -   The link opens only at the owner's linkBase: a private-use scheme, loopback with a port, or
+        https.
+    -   Sending goes through a MailSender port. SimulatedOutbox stands in until the owner chooses
+        the service.
+    -   A rate limiter caps how many links one address may be sent (the owner's maxSends per
+        windowMinutes).
+    -   If sending fails, the link is revoked and the rate limit released.
+    -   The answer never says whether an account exists.
+
+Telemetry (@accounts/telemetry)
+
+Probes
+
+-   Probes come from adapter-lib and are checked against its contract before they run.
+-   A probe declares counters, each with a description and at most one attribute of fixed values.
+    This follows OpenTelemetry's counter and attribute in name only.
+-   A probe also declares a disclosure: what it collects, why, and what it never collects.
+
+Consent
+
+-   Consent is per person and per probe.
+-   It is off by default and given for one probe version, so a new version is asked for again.
+-   Saying no deletes what that probe counted for the person.
+-   Only a person gives or withdraws consent.
+
+Counting
+
+-   The meter hands each local event to the probes the person agreed to.
+-   It keeps only what the contract accepts, by export interval (the owner's exportIntervalDays).
+-   Nothing is counted while telemetry is off (T110).
+
+Export
+
+-   A person sees exactly what would be sent (preview) and sends it (export). An assistant cannot.
+-   Batches hold only ended intervals and are added up across everyone on the computer who agreed.
+-   Every series below the owner's suppressionThreshold is left out, and only how many were left out
+    is said.
+-   Batches hold no account, person or time beyond the interval's days.
+-   A batch with every series suppressed is dropped and never sent.
+-   If the exporter fails, nothing is lost (T200).
+-   Every batch sent is kept in the history.
+
+Numbers
+
+Every number is the owner's, and an unset number refuses (A100 and A101):
+
+-   session length;
+-   the scrypt numbers, minimum length and lockout;
+-   link life, sends and window;
+-   export interval and suppression threshold.
+
+None is invented here. The tests use made-up values only.
+
+Checks
+
+npm run check runs:
+
+-   the type check;
+-   the code map, which covers 1×3×n modules, line limits and features;
+-   the legal notice;
+-   the test keys;
+-   the internal-words check;
+-   every test.
+
+The test keys are ACC-T, EML-T and TEL-T. The tests run against a simulated vault, audit log, outbox
+and exporter, with synthetic .test people only.
+
+----------------------------------------------------------------------------------------------------
+
+Copyright (c) 2026 G-ynthetic Labs LLC. All rights reserved. Proprietary and confidential. Trade
+secret of G-ynthetic Labs LLC. Unauthorized copying, use or disclosure is prohibited.

@@ -1,0 +1,10 @@
+{
+  "name": "@accounts/telemetry",
+  "version": "0.1.0",
+  "private": true,
+  "license": "SEE LICENSE IN LICENSE",
+  "description": "Disclosed, aggregate-only telemetry: consent per person per probe (off by default), counters that run only while consent is on, and person-approved exports of counts with small counts suppressed. SIMULATED until the owner's word.",
+  "type": "module",
+  "exports": { ".": "./src/index.ts" },
+  "dependencies": { "@accounts/core": "0.1.0", "adapter-lib": "0.1.0" }
+}

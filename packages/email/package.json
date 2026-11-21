@@ -1,0 +1,10 @@
+{
+  "name": "@accounts/email",
+  "version": "0.1.0",
+  "private": true,
+  "license": "SEE LICENSE IN LICENSE",
+  "description": "The private-email way in: an email address with a password, and optional magic links sent through a mail sender the product plugs in. SIMULATED until the owner's word.",
+  "type": "module",
+  "exports": { ".": "./src/index.ts" },
+  "dependencies": { "@accounts/core": "0.1.0" }
+}

@@ -1,0 +1,195 @@
+{
+  "about": "Every test key of Accounts-core (ACC-T### core, EML-T### email, TEL-T### telemetry): each test's name starts with its key, listed here in the same commit. A key is never reused; a red test is never weakened, skipped or deleted.",
+  "prefixes": [
+    "ACC-T",
+    "EML-T",
+    "TEL-T"
+  ],
+  "keys": [
+    {
+      "key": "ACC-T001",
+      "test": "packages/core/test/core.test.ts",
+      "says": "every code has plain words and an unknown code is a bug"
+    },
+    {
+      "key": "ACC-T002",
+      "test": "packages/core/test/core.test.ts",
+      "says": "owner settings: unset refuses and names every missing number; nothing is assumed"
+    },
+    {
+      "key": "ACC-T003",
+      "test": "packages/core/test/core.test.ts",
+      "says": "only a person changes an account; an assistant or an unnamed actor is refused"
+    },
+    {
+      "key": "ACC-T004",
+      "test": "packages/core/test/core.test.ts",
+      "says": "the memory store passes the store check that a product runs on its own vault"
+    },
+    {
+      "key": "ACC-T005",
+      "test": "packages/core/test/core.test.ts",
+      "says": "the record is hash-chained: an entry changed afterwards is found"
+    },
+    {
+      "key": "ACC-T006",
+      "test": "packages/core/test/core.test.ts",
+      "says": "a checked identity is required, and an email is shown masked"
+    },
+    {
+      "key": "ACC-T007",
+      "test": "packages/core/test/core.test.ts",
+      "says": "the first sign-in makes an account and a session; the next finds it"
+    },
+    {
+      "key": "ACC-T008",
+      "test": "packages/core/test/core.test.ts",
+      "says": "the store keeps no provider subject, no session token and only an email account its address"
+    },
+    {
+      "key": "ACC-T009",
+      "test": "packages/core/test/core.test.ts",
+      "says": "sessions need the owner's length, end on time and close on sign-out"
+    },
+    {
+      "key": "ACC-T010",
+      "test": "packages/core/test/core.test.ts",
+      "says": "a second sign-in is joined only by the signed-in person, never to two accounts"
+    },
+    {
+      "key": "ACC-T011",
+      "test": "packages/core/test/core.test.ts",
+      "says": "a sign-in is removed by its ref, but never the last one"
+    },
+    {
+      "key": "ACC-T012",
+      "test": "packages/core/test/core.test.ts",
+      "says": "passwords: owner settings, minimum length, right and wrong, and a pause after too many wrong"
+    },
+    {
+      "key": "ACC-T013",
+      "test": "packages/core/test/core.test.ts",
+      "says": "removing an account ends its sessions and deletes it; only by a person"
+    },
+    {
+      "key": "ACC-T014",
+      "test": "packages/core/test/core.test.ts",
+      "says": "every change is recorded first; when the record is down nothing changes"
+    },
+    {
+      "key": "ACC-T015",
+      "test": "packages/core/test/core.test.ts",
+      "says": "a damaged account file refuses sign-in rather than making a second account"
+    },
+    {
+      "key": "ACC-T016",
+      "test": "packages/core/test/core.test.ts",
+      "says": "a person may name an account; control characters and long names are refused"
+    },
+    {
+      "key": "EML-T001",
+      "test": "packages/email/test/email.test.ts",
+      "says": "every email code has plain words; addresses have one form"
+    },
+    {
+      "key": "EML-T002",
+      "test": "packages/email/test/email.test.ts",
+      "says": "links open only where an app on the computer may be opened"
+    },
+    {
+      "key": "EML-T003",
+      "test": "packages/email/test/email.test.ts",
+      "says": "email links are off until the owner turns them on and sets every value"
+    },
+    {
+      "key": "EML-T004",
+      "test": "packages/email/test/email.test.ts",
+      "says": "the email is plain words with one link, its end, and no word on whether an account exists"
+    },
+    {
+      "key": "EML-T005",
+      "test": "packages/email/test/email.test.ts",
+      "says": "a link signs in once, makes the account the first time, and finds it after"
+    },
+    {
+      "key": "EML-T006",
+      "test": "packages/email/test/email.test.ts",
+      "says": "a link ends on time and is gone once tried; another app's link is refused"
+    },
+    {
+      "key": "EML-T007",
+      "test": "packages/email/test/email.test.ts",
+      "says": "the send limit is the owner's; a failed send leaves no link and costs no send"
+    },
+    {
+      "key": "EML-T008",
+      "test": "packages/email/test/email.test.ts",
+      "says": "no sender, an assistant, or links turned off: nothing is sent and nothing is kept"
+    },
+    {
+      "key": "EML-T009",
+      "test": "packages/email/test/email.test.ts",
+      "says": "the store and the audit log keep no link token; the audit log keeps no address"
+    },
+    {
+      "key": "EML-T010",
+      "test": "packages/email/test/email.test.ts",
+      "says": "private email with a password: made once per address, unverified, and signed in by password"
+    },
+    {
+      "key": "EML-T011",
+      "test": "packages/email/test/email.test.ts",
+      "says": "a link for an address someone signed up with a password verifies it and clears that password"
+    },
+    {
+      "key": "EML-T012",
+      "test": "packages/email/test/email.test.ts",
+      "says": "ended links are swept when the product starts"
+    },
+    {
+      "key": "TEL-T001",
+      "test": "packages/telemetry/test/telemetry.test.ts",
+      "says": "telemetry is off until the owner turns it on and sets every number; every code has plain words"
+    },
+    {
+      "key": "TEL-T002",
+      "test": "packages/telemetry/test/telemetry.test.ts",
+      "says": "only probes that meet the contract are run, once each"
+    },
+    {
+      "key": "TEL-T003",
+      "test": "packages/telemetry/test/telemetry.test.ts",
+      "says": "the disclosure is the probe's own words and every count it can make, also as plain text"
+    },
+    {
+      "key": "TEL-T004",
+      "test": "packages/telemetry/test/telemetry.test.ts",
+      "says": "nothing is counted before a person says yes; an assistant cannot say yes or no"
+    },
+    {
+      "key": "TEL-T005",
+      "test": "packages/telemetry/test/telemetry.test.ts",
+      "says": "the meter counts only declared counts, per export interval, and keeps nothing else"
+    },
+    {
+      "key": "TEL-T006",
+      "test": "packages/telemetry/test/telemetry.test.ts",
+      "says": "saying no deletes what that probe counted for the person, and only that"
+    },
+    {
+      "key": "TEL-T007",
+      "test": "packages/telemetry/test/telemetry.test.ts",
+      "says": "only ended intervals are exported, added up across people, with small counts suppressed"
+    },
+    {
+      "key": "TEL-T008",
+      "test": "packages/telemetry/test/telemetry.test.ts",
+      "says": "only a person exports; what is sent is kept in the history and removed from everyone's counts"
+    },
+    {
+      "key": "TEL-T009",
+      "test": "packages/telemetry/test/telemetry.test.ts",
+      "says": "when the exporter fails nothing is lost; a batch with every series suppressed is dropped, never sent"
+    }
+  ]
+}

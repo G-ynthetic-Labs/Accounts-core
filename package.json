@@ -1,0 +1,31 @@
+{
+  "name": "accounts-core",
+  "version": "0.1.0",
+  "private": true,
+  "license": "SEE LICENSE IN LICENSE",
+  "description": "Accounts-core: the shared user accounts module every G-ynthetic Labs product pins. Accounts kept on the person's own computer, sign-in sessions, passwords, magic links and disclosed, aggregate-only telemetry. SIMULATED until the owner's word. G-ynthetic Labs, internal.",
+  "type": "module",
+  "engines": {
+    "node": ">=26.13"
+  },
+  "workspaces": [
+    "packages/*",
+    "vendor/adapter-lib"
+  ],
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json",
+    "map": "node tools/code-map.mjs",
+    "keys": "node tools/keys.mjs",
+    "legal": "node --disable-warning=ExperimentalWarning vendor/legal/scripts/legal.ts --root .",
+    "test": "node --disable-warning=ExperimentalWarning --test \"packages/*/test/**/*.test.ts\"",
+    "markers": "node tools/markers.mjs",
+    "check": "npm run typecheck && npm run map -- --check && npm run legal -- check && npm run keys && npm run markers && npm test",
+    "docs": "node tools/docs.mjs"
+  },
+  "devDependencies": {
+    "@types/node": "26.6.6",
+    "typescript": "7.0.2",
+    "typescript-api": "npm:typescript@6.0.3"
+  },
+  "x-dependencies": "No outside packages at run time: the packages use Node's own crypto, and telemetry reads the probe contract from the company's adapter library (vendor/adapter-lib, pinned submodule, itself dependency-free). typescript (7) is the type check; typescript-api (TypeScript 6.0) is the code map's parser until TypeScript 7 ships a stable parser API."
+}

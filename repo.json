@@ -1,0 +1,56 @@
+{
+  "id": "accounts-core",
+  "title": "Accounts-core",
+  "x-about": "Settings for this repository's code map (tools/code-map.mjs), key check (tools/keys.mjs) and documents (tools/docs.mjs).",
+  "ownerLegalName": "G-ynthetic Labs LLC",
+  "maxLines": 330,
+  "x-maxLines": "POL-CODE-001 as ruled by the owner on 21 Nov 2026: code files at 300 lines or fewer, give or take 30 (hard ceiling 330). Change it only on the owner's word.",
+  "features": [
+    "accounts-core",
+    "accounts-email",
+    "accounts-telemetry",
+    "accounts-tools",
+    "legal-notice"
+  ],
+  "x-features": "Proposed on 21 Nov 2026 with the first packages and waiting for the owner (a new feature name needs the owner).",
+  "x-featureNotes": {
+    "accounts-core": "Accounts kept on the person's own computer: the vault and audit log ports, documents, accounts and linked sign-ins (OpenID Connect sub and email_verified), sessions and password hashes. Only a person changes an account.",
+    "accounts-email": "The private-email ways in: an email address with a password, and optional magic links sent through a mail sender the product plugs in, with a rate limit per address.",
+    "accounts-telemetry": "Disclosed, aggregate-only telemetry: probes from adapter-lib, consent per person per probe (off by default), a meter that counts only with consent, and person-approved exports with small counts suppressed.",
+    "accounts-tools": "Repository tools: the code map, the feature list, the key check and the document exports (PDF, Word, plain text).",
+    "legal-notice": "The legal notice at the head of every file."
+  },
+  "modules": {
+    "core": { "parts": 3, "n": 4 },
+    "email": { "parts": 3, "n": 3 },
+    "telemetry": { "parts": 3, "n": 3 }
+  },
+  "x-modules": "POL-CODE-002: every package is a 1x3xn module. Each source file under packages/<module>/src/<part>/ carries `@address <module>.<part>.<sub>`; the code map checks three parts with the same n each.",
+  "codeMap": "codemap.json",
+  "featuresDoc": "features.md",
+  "featureMap": "feature-map.json",
+  "codeDirs": [
+    "packages",
+    "tools"
+  ],
+  "testKeyPrefixes": ["ACC-T", "EML-T", "TEL-T"],
+  "x-testKeyPrefixes": "ACC-T for @accounts/core, EML-T for @accounts/email, TEL-T for @accounts/telemetry.",
+  "keyRegistry": "key-registry/accounts-keys.json",
+  "documents": [
+    "docs/design.md",
+    "docs/owner-items.md"
+  ],
+  "x-documents": "POL-DOCS-002: every document a person reads exports as PDF, Word (.docx, which Google Docs opens) and plain text; npm run docs writes them to docs/export/.",
+  "internalMarkers": [
+    "TRADE SECRET",
+    "decomposition",
+    "Cortec",
+    "tensor",
+    "lattice",
+    "voxel",
+    "triads",
+    "tripartite",
+    "lens"
+  ],
+  "x-internalMarkers": "D-166: words that never appear in anything a client receives. The tools check every user-facing code message and the documents against this list."
+}
