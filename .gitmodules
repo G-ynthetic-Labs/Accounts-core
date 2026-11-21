@@ -1,0 +1,6 @@
+[submodule "vendor/legal"]
+	path = vendor/legal
+	url = https://github.com/G-ynthetic-Labs/Legal-attribution.git
+[submodule "vendor/adapter-lib"]
+	path = vendor/adapter-lib
+	url = https://github.com/G-ynthetic-Labs/adapter-lib.git

@@ -1,0 +1,43 @@
+PROPRIETARY LICENSE
+
+Copyright (c) 2026 G-ynthetic Labs LLC. All rights reserved.
+
+This repository and everything in it, including its source code, object code,
+algorithms, designs, architecture, data models, documentation, test suites and
+evidence, and any copy, part or derivative of them (the "Software"), are the
+exclusive, confidential and proprietary property of G-ynthetic Labs LLC
+("G-ynthetic Labs"). The Software contains trade secrets of G-ynthetic Labs.
+
+1. No license. No right or license to the Software is granted by its
+   availability, by access to this repository, or by implication or estoppel.
+   Any right to use the Software exists only under a separate written agreement
+   signed by G-ynthetic Labs (for example, an evaluation and non-disclosure
+   agreement or a customer license), and only to the extent that agreement
+   states.
+
+2. Restrictions. Except as such an agreement expressly permits, no one may
+   copy, modify, adapt, translate, distribute, publish, display, sublicense,
+   lease, lend or sell the Software or any part of it; create derivative works
+   of it; reverse engineer, decompile or disassemble it, except to the extent
+   applicable law expressly permits despite this restriction; use it to build,
+   train or improve any competing or similar product or model; or remove or
+   alter any proprietary, confidentiality or copyright notice.
+
+3. Confidentiality. The Software is confidential information of G-ynthetic
+   Labs. Anyone who has access to it must hold it in confidence, use it only as
+   their written agreement permits, and disclose it to no one else.
+
+4. Third-party components. Open-source components the Software depends on
+   remain under their own licenses, which this license does not change.
+
+5. No warranty; limitation of liability. THE SOFTWARE IS PROVIDED "AS IS",
+   WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED. TO THE MAXIMUM EXTENT
+   PERMITTED BY LAW, G-YNTHETIC LABS IS NOT LIABLE FOR ANY CLAIM, DAMAGES OR
+   OTHER LIABILITY ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE,
+   EXCEPT AS A SEPARATE SIGNED AGREEMENT STATES.
+
+6. Enforcement. Unauthorized use or disclosure may cause G-ynthetic Labs
+   irreparable harm, and G-ynthetic Labs may seek injunctive relief in addition
+   to any other remedy.
+
+Notices and permission requests: G-ynthetic-Labs@proton.me
