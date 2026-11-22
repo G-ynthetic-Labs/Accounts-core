@@ -11,7 +11,7 @@ _Managed block — edit it in Policy-Procedure/POINTER.md, not here._
 <!-- REPO-MAP:BEGIN -->
 ## Company coding policy and repo map
 
-Canonical copy: `repo-map.json` in **G-ynthetic-Labs/Policy-Procedure** (POL-REPO-001, updated 2026-11-21). Every company repository carries this block at the end of `.claude/CLAUDE.md`. Where an older note in this repository's CLAUDE.md files disagrees with it, this block is the newer rule (William, 21 Nov 2026) and wins; a repository's own checks still have to pass.
+Canonical copy: `repo-map.json` in **G-ynthetic-Labs/Policy-Procedure** (POL-REPO-001, updated 2026-11-22). Every company repository carries this block at the end of `.claude/CLAUDE.md`. Where an older note in this repository's CLAUDE.md files disagrees with it, this block is the newer rule (William, 21 Nov 2026) and wins; a repository's own checks still have to pass.
 
 ### Coding policy
 
@@ -34,7 +34,7 @@ Canonical copy: `repo-map.json` in **G-ynthetic-Labs/Policy-Procedure** (POL-REP
 | A role, skill, tool or job description | Roles-lib, Skills-lib, Tools-lib, agent-job-description-lib |
 | Checking or granting what an agent may do | Capability-gate |
 | Sealing, attestation, reproducible inference | Certified-Inference |
-| Accounts, sign-in sessions, passcodes, telemetry runtime | Accounts-core |
+| Accounts, sign-in sessions, passwords, magic links, telemetry runtime | Accounts-core |
 | Storing the record durably | record-storage-lib |
 | Engine pieces (record, buckets, adapter contract, pass) | engine-core |
 | Harness governance and deployment configuration | Agent-Harness |
@@ -63,7 +63,7 @@ Canonical copy: `repo-map.json` in **G-ynthetic-Labs/Policy-Procedure** (POL-REP
 - **adapter-lib**: Model adapters, one folder per model server, all meeting one contract; also the telemetry probe contract and per-use-case probes. _No connectors, no retries, no routing._
 - **connectors-lib**: Connectors to outside systems (mail, calendars, SMS, notifications, sign-in, generated connectors), credentials by secretRef only. _No model adapters._
 - **LLM-tank**: The model pool every client agent draws on and its deterministic routing table; its core never names a provider. _Provider-specific code stays in adapter-lib._
-- **Accounts-core**: User accounts kept on the person's own computer, sign-in sessions, email passcodes and magic links, and the telemetry runtime (consent, collection, aggregate reports, record of what was sent). _No adapters, no connectors._
+- **Accounts-core**: User accounts kept on the person's own computer, sign-in sessions, passwords and email magic links, and the telemetry runtime (consent, counting, aggregate export, record of what was sent). _No adapters, no connectors._
 - **agent-screen-kit**: The shared screen every agent core mounts (sign-in, what waits for a role, approve or deny as oneself) and each core's preconfigured dashboard.
 - **Legal-attribution**: The legal notice on every file, the stamp and check tool, and the legal documents; every repository vendors it instead of writing its own.
 - **Policy-Procedure**: Company policy and procedure, the keyed index, and the canonical copy of this repo map.
