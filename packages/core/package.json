@@ -1,0 +1,9 @@
+{
+  "name": "@accounts/core",
+  "version": "0.1.0",
+  "private": true,
+  "license": "SEE LICENSE IN LICENSE",
+  "description": "Accounts kept on the person's own computer: sealed at rest through the host's store, sessions, password hashes and an audit log of every change. SIMULATED until the owner's word.",
+  "type": "module",
+  "exports": { ".": "./src/index.ts" }
+}

@@ -1,0 +1,12 @@
+{
+  "about": "The legal facts every notice in Poly is written from, read by vendor/legal (the Legal-attribution module). Change the facts in Legal-attribution first; then run `npm run legal -- stamp`. clientFacing is empty until the owner says which files clients receive.",
+  "ownerLegalName": "G-ynthetic Labs LLC",
+  "copyrightYears": "2026",
+  "licenseFile": "LICENSE",
+  "noticeEmail": "G-ynthetic-Labs@proton.me",
+  "governingState": "Oregon",
+  "venue": "the state and federal courts located in Marion County, Oregon",
+  "confidentialityYears": 5,
+  "clientFacing": [],
+  "eyesOnly": []
+}
